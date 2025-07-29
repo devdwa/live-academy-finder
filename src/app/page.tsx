@@ -279,8 +279,8 @@ export default function Home() {
                 </li>
                 <li>
                   시제를 바꿔가며 검색해보세요. 예: <code>run out of</code> →{" "}
-                  <code>running out of,</code> <code>run out of</code> →{" "}
-                  <code>running out of</code>
+                  <code>running out of,</code> <code>end up</code> →{" "}
+                  <code>ended up</code>
                 </li>
               </ul>
             </div>
