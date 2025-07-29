@@ -22,19 +22,19 @@ type VideoGroup = {
   published_at: string;
 };
 
-function BmcButton() {
-  return (
-    <a
-      href="https://www.buymeacoffee.com/yourusername"
-      target="_blank"
-      rel="noopener noreferrer"
-      className="flex items-center gap-2 bg-yellow-300 hover:bg-yellow-400 text-black px-4 py-2 rounded shadow font-medium transition"
-    >
-      <span className="text-xl">☕</span>
-      <span>Buy me a coffee</span>
-    </a>
-  );
-}
+// function BmcButton() {
+//   return (
+//     <a
+//       href="https://www.buymeacoffee.com/yourusername"
+//       target="_blank"
+//       rel="noopener noreferrer"
+//       className="flex items-center gap-2 bg-yellow-300 hover:bg-yellow-400 text-black px-4 py-2 rounded shadow font-medium transition"
+//     >
+//       <span className="text-xl">☕</span>
+//       <span>Buy me a coffee</span>
+//     </a>
+//   );
+// }
 
 function formatDate(dateString: string): string {
   const date = new Date(dateString);
