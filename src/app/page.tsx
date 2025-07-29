@@ -22,6 +22,20 @@ type VideoGroup = {
   published_at: string;
 };
 
+function BmcButton() {
+  return (
+    <a
+      href="https://www.buymeacoffee.com/yourusername"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="flex items-center gap-2 bg-yellow-300 hover:bg-yellow-400 text-black px-4 py-2 rounded shadow font-medium transition"
+    >
+      <span className="text-xl">☕</span>
+      <span>Buy me a coffee</span>
+    </a>
+  );
+}
+
 function formatDate(dateString: string): string {
   const date = new Date(dateString);
   const year = date.getFullYear().toString().slice(-2);
@@ -92,6 +106,8 @@ export default function Home() {
     }
 
     setIsLoading(true);
+    setResults([]);
+    setTotalCount(0);
     setHasSearched(true);
 
     const res = await fetch("/api/search", {
@@ -162,15 +178,16 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-white p-4">
-      <div className="max-w-2xl mx-auto bg-white text-black">
+      <div className="max-w-2xl mx-auto bg-white text-black flex flex-col">
         <Link
           href="/"
-          className="text-3xl font-bold mb-2 flex gap-1 items-center"
+          className="w-full text-3xl font-bold mb-2 flex gap-1 items-center"
           onClick={() => {
             setResults([]);
             setHasSearched(false);
             setKeyword("");
             setCommittedKeyword("");
+            setTotalCount(0);
           }}
         >
           <Image src="/la-logo.png" width={40} height={40} alt="logo" />
@@ -178,7 +195,7 @@ export default function Home() {
         </Link>
 
         {/* 체크박스 */}
-        <div className="flex items-center gap-4 mb-2 text-sm text-gray-700">
+        <div className="w-full flex items-center gap-4 mb-2 text-sm text-gray-700">
           <label className="flex items-center gap-1">
             <input
               type="checkbox"
@@ -198,7 +215,7 @@ export default function Home() {
         </div>
 
         {/* 검색 입력 */}
-        <div className="flex">
+        <div className="w-full flex">
           <input
             type="text"
             placeholder="ex) come up with"
@@ -228,11 +245,17 @@ export default function Home() {
         </div>
 
         {/* 결과 출력 */}
-        <div className="mt-3 space-y-4">
-          {isLoading && <p className="text-gray-500">Loading...</p>}
+        <div className="w-full  mt-3 space-y-4">
+          {isLoading && (
+            <div className="flex justify-center my-[20px]">
+              <div className="spinner w-12 h-12" />
+            </div>
+          )}
 
           {!isLoading && hasSearched && results.length === 0 && (
-            <p className="text-gray-500">No result</p>
+            <div className="w-full flex justify-center my-[20px]">
+              <p className="text-gray-500">No result</p>
+            </div>
           )}
 
           {!isLoading && !hasSearched && results.length === 0 && (
@@ -255,8 +278,9 @@ export default function Home() {
                   채널은 한국어 사용 비율이 높아 자막 인식률이 낮을 수 있습니다)
                 </li>
                 <li>
-                  시제를 바꿔가며 검색해보세요. 예: <code>run low on</code> →{" "}
-                  <code>running low on</code>
+                  시제를 바꿔가며 검색해보세요. 예: <code>run out of</code> →{" "}
+                  <code>running out of,</code> <code>run out of</code> →{" "}
+                  <code>running out of</code>
                 </li>
               </ul>
             </div>
@@ -347,6 +371,22 @@ export default function Home() {
           )}
         </div>
       </div>
+      {/* <Script
+        data-name="BMC-Widget"
+        data-cfasync="false"
+        src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js"
+        data-id="yourusername"
+        data-description="Support me on Buy me a coffee!"
+        data-message="감사합니다! 도움이 되셨다면 커피 한 잔 후원 부탁드려요 :)"
+        data-color="#FFDD00"
+        data-position="right"
+        data-x_margin="18"
+        data-y_margin="18"
+        strategy="afterInteractive"
+      />
+      <div className="mt-8 text-center">
+        <BmcButton />
+      </div> */}
     </div>
   );
 }

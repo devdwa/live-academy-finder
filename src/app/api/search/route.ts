@@ -33,8 +33,8 @@ export async function POST(req: Request) {
     // 총 개수 쿼리
     const countQuery = `
       SELECT COUNT(*)
-      FROM youtube_transcripts yt
-      JOIN youtube_videos yv ON yt.video_id = yv.video_id
+      FROM public.youtube_transcripts yt
+      JOIN public.youtube_videos yv ON yt.video_id = yv.video_id
       WHERE yt.text ~* $1
       ${toddlerCondition}
     `;
@@ -44,8 +44,8 @@ export async function POST(req: Request) {
     // 실제 데이터 쿼리
     const dataQuery = `
       SELECT yt.video_id, yt.start, yt.dur, yt.text, yv.title, yv.published_at
-      FROM youtube_transcripts yt
-      JOIN youtube_videos yv ON yt.video_id = yv.video_id
+      FROM public.youtube_transcripts yt
+      JOIN public.youtube_videos yv ON yt.video_id = yv.video_id
       WHERE yt.text ~* $1
       ${toddlerCondition}
       ORDER BY yv.published_at DESC, yt.start
