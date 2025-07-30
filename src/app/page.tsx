@@ -179,20 +179,22 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-white p-4">
       <div className="max-w-2xl mx-auto bg-white text-black flex flex-col">
-        <Link
-          href="/"
-          className="w-full text-3xl font-bold mb-2 flex gap-1 items-center"
-          onClick={() => {
-            setResults([]);
-            setHasSearched(false);
-            setKeyword("");
-            setCommittedKeyword("");
-            setTotalCount(0);
-          }}
-        >
-          <Image src="/la-logo.png" width={40} height={40} alt="logo" />
-          Live Academy Finder
-        </Link>
+        <div className="mb-2">
+          <Link
+            href="/"
+            onClick={() => {
+              setResults([]);
+              setHasSearched(false);
+              setKeyword("");
+              setCommittedKeyword("");
+              setTotalCount(0);
+            }}
+            className="inline-flex items-center gap-2"
+          >
+            <Image src="/la-logo.png" width={40} height={40} alt="logo" />
+            <span className="text-3xl font-bold">Live Academy Finder</span>
+          </Link>
+        </div>
 
         {/* 체크박스 */}
         <div className="w-full flex items-center gap-4 mb-2 text-sm text-gray-700">
@@ -218,7 +220,7 @@ export default function Home() {
         <div className="w-full flex">
           <input
             type="text"
-            placeholder="ex) come up with"
+            placeholder="ex) come up with, from now on"
             value={keyword}
             onChange={(e) => setKeyword(e.target.value)}
             onKeyDown={handleKeyDown}
@@ -270,17 +272,22 @@ export default function Home() {
               <p className="mb-1">📝 사용 전 참고사항</p>
               <ul className="space-y-1 pl-4 list-disc">
                 <li>
-                  유튜브 자동 자막 기반 검색이라 자막이 부정확한 경우 일부
-                  영상이 누락될 수 있습니다.
-                </li>
-                <li>
-                  본 채널이 토들러 채널보다 검색 정확도가 높습니다. (토들러
-                  채널은 한국어 사용 비율이 높아 자막 인식률이 낮을 수 있습니다)
-                </li>
-                <li>
                   시제를 바꿔가며 검색해보세요. 예: <code>run out of</code> →{" "}
-                  <code>running out of,</code> <code>end up</code> →{" "}
-                  <code>ended up</code>
+                  <code>running out of,</code> <code>come up with</code> →{" "}
+                  <code>came up with</code>
+                </li>
+                <li>
+                  유튜브 자막 기반 검색이라 자동자막이 부정확한 경우 검색에서
+                  제외될 수 있습니다.
+                </li>
+                <li>최근 영상들은 검색에서 제외될 수 있습니다.</li>
+                <li>
+                  토들러 채널은 한국어를 많이 섞어 쓰시기 때문에 자막 인식률이
+                  낮을 수 있습니다.
+                </li>
+                <li>
+                  저렴한 서버라서 검색 속도가 느릴 수 있고, 한달에 50,000건 호출
+                  제한이 있으니 양해바랍니다. (월말쯤 갱신)
                 </li>
               </ul>
             </div>

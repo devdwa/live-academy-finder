@@ -32,7 +32,13 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <Suspense fallback={<div className="spinner w-12 h-12" />}>
+        <Suspense
+          fallback={
+            <div className="min-h-screen flex items-center justify-center">
+              <div className="spinner w-12 h-12" />
+            </div>
+          }
+        >
           {children}
         </Suspense>
       </body>
